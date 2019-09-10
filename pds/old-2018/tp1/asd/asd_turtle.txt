@@ -1,0 +1,14 @@
+Pas à jour
+
+turtle := Turle(triplet*)
+    { turtle.ntriples := Concat(triplet*.ntriples) }
+triplet := Triplet(entite, corps+)
+    { triplet.ntriples := Concat(entite.ntriples + corps*.ntriples) }
+corps := Corps(entite, objet+)
+    { corps.ntriples := Concat(entite.ntriples + objet*.ntriples) }
+objet := ObjetA(entite)
+    { objet.ntriples := entite.ntriples }
+  | ObjetB(string)
+    { objet.ntriples := '"' + string + '"' }
+entite := Entite(string)
+    { entite.ntriples := "<" + string + ">" }

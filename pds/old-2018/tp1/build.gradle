@@ -1,0 +1,30 @@
+apply plugin: 'java'
+// apply plugin: 'antlr'
+
+repositories {
+  mavenCentral()
+}
+
+/*
+dependencies {
+  antlr 'org.antlr:antlr4:4.7.1'
+}
+
+generateGrammarSource {
+  arguments += ['-no-visitor', '-no-listener', '-Xexact-output-dir']
+}
+*/
+
+
+//mainClassName = 'TP1.Main'
+
+//defaultTasks 'run'
+
+jar {
+  manifest {
+    attributes (
+      'Main-Class': 'TP1.Main',
+      'Class-Path': configurations.runtimeClasspath.files.join(' ')
+    )
+  }
+}
