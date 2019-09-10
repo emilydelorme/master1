@@ -1,0 +1,56 @@
+program ::=
+    Program(expression e) {
+        program.pp := e.pp
+        program.toIR := Concat (e.toIR, Llvm.Return)
+    }
+
+expression ::=
+    AddExpression(expression left, expression right) {
+        expression.pp := "(" + left.pp + " + " + right.pp + ")"
+        expression.toIR := Concat (left.toIR, right.toIR, Llvm.add)
+    }
+    | SubExpression(expression, expression) {
+        expression.pp := "(" + left.pp + " - " + right.pp + ")"
+        expression.toIR := Concat (left.toIR, right.toIR, Llvm.sub)
+    }
+    | MulExpression(expression, expression) {
+        expression.pp := "(" + left.pp + " * " + right.pp + ")"
+        expression.toIR := Concat (left.toIR, right.toIR, Llvm.mul)
+    }
+    | DivExpression(expression, expression) {
+        expression.pp := "(" + left.pp + " / " + right.pp + ")"
+        expression.toIR := Concat (left.toIR, right.toIR, Llvm.div)
+    }
+    | IntegerExpression(int i) {
+        expression.pp := i.value
+        expression.toIR := Llvm.IR
+    }
+
+
+
+
+
+
+program ::=
+    Program(instruction)
+
+instruction ::=
+    ReturnInstruction(expression)
+    | PrintInstruction(exprOrStr+)
+    | IfThenInstruction(expression, expression)
+    | IfThenElseInstruction(expression, instruction, instruction)
+    | BlocInstruction(declaration*, instruction+)
+
+declaration ::=
+    ???
+
+exprOrStr ::=
+    ExprOrStr_Expr(expression)
+    | ExprOrStr_Str(string)
+
+expression ::=
+    AddExpression(expression, expression)
+    | SubExpression(expression, expression)
+    | MulExpression(expression, expression)
+    | DivExpression(expression, expression)
+    | IntegerExpression(int)
