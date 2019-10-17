@@ -4,7 +4,7 @@ import scala.io.StdIn.readLine
 import simplifier.MPLDelorme._
 import library._
 
-object Application extends App{
+object Application extends App {
   val simp= new Simplify()
   while(true){
     print("Pattern: ")
