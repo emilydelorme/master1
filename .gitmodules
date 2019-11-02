@@ -1,3 +1,6 @@
 [submodule "se-project"]
 	path = se-project
 	url = https://gitlab.istic.univ-rennes1.fr/18000831/se-project
+[submodule "master1-pds"]
+	path = master1-pds
+	url = https://github.com/emilydelorme/master1-pds.git
