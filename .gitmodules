@@ -4,3 +4,6 @@
 [submodule "master1-pds"]
 	path = master1-pds
 	url = https://github.com/emilydelorme/master1-pds.git
+[submodule "aco2019"]
+	path = aco2019
+	url = http://gitlab.emilydelorme.xyz/emilydelorme/aco2019.git
