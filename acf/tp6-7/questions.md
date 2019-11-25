@@ -2,5 +2,5 @@
 
 p1 -> aggresif
 p2 -> aggresif
-p3 -> inoffensif
+p3 -> aggresif
 p4 -> aggresif
