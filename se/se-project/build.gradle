@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "me.champeau.gradle:jmh-gradle-plugin:0.5.0"
+    }
+}
+
+plugins {
+    id 'java'
+    id 'application'
+    id 'eclipse'
+    id "me.champeau.gradle.jmh" version "0.5.0"
+}
+
+group 'com.emilydelorme.se'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.9
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation 'org.openjdk.jmh:jmh-generator-annprocess:1.19'
+    testImplementation group: 'org.openjdk.jmh', name: 'jmh-core-benchmarks', version: '1.21'
+}
+
+apply plugin: "me.champeau.gradle.jmh"
+apply plugin: "java"
+
+ext {
+    javaMainClass = "main.GeneticAlgorithmMultithread"
+}
+
+application {
+    mainClassName = javaMainClass
+}
+
+jmh {
+    include = 'GeneticAlgorithm'
+    timeout = '30s' // Timeout for benchmark iteration.
+    timeUnit = 's' // Output time unit. Available time units are: [m, s, ms, us, ns].
+    iterations = 5
+    warmup = '20s' // Time to spend at each warmup iteration.
+    warmupForks = 1 // How many warmup forks to make for a single benchmark. 0 to disable warmup forks.
+    warmupIterations = 1
+    fork = 3
+    benchmarkMode = ['avgt']
+}
